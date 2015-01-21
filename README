@@ -1,0 +1,5 @@
+Pour lancer le script :
+
+sudo -E ./script-placement-fichiers.sh
+
+Mais il faut que la variable d'envrionnement SONIA_WORKSPACE_ROOT existe.
