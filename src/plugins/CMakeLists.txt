@@ -52,8 +52,13 @@ target_link_libraries(hello_world ${GAZEBO_LIBRAIRIES} ${catkin_LIBRARIES})
 #===============================================================================
 # I N S T A L L   C O M P I L E D   F I L E S
 
-install(TARGETS
-	hello_world
-	DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-	LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+set(
+	GAZEBO_PLUGIN_INSTALL_DIR
+	#${CMAKE_INSTALL_PREFIX}/${LIB_INSTALL_DIR}/gazebo-${GAZEBO_VERSION}/plugins
+	${CMAKE_INSTALL_PREFIX}/${LIB_INSTALL_DIR}/gazebo/plugins
+	)
+
+install(
+	TARGETS	hello_world
+	LIBRARY DESTINATION ${GAZEBO_PLUGIN_INSTALL_DIR}
 	)
