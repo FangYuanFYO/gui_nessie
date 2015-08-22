@@ -1,11 +1,28 @@
+# \file	CMakeLists.txt
+# \author	Thomas Fuhrmann <tomesman@gmail.com>
+# \date	22/08/2015
+# \copyright	2015 SONIA AUV ETS <sonia@ens.etsmtl.ca>
+
+#===============================================================================
+# C M A K E   C O N F I G U R A T I O N
+
 cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
+
 project(plugins)
+
+#===============================================================================
+# C A T K I N   P A C K A G E S
 
 find_package(catkin REQUIRED COMPONENTS
   roscpp
+  rosconsole
 )
 
+#===============================================================================
+# OTHER PACKAGES
+
 find_package(gazebo REQUIRED)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GAZEBO_CXX_FLAGS}")
 
 catkin_package(
   INCLUDE_DIRS include
@@ -13,9 +30,30 @@ catkin_package(
   DEPENDS system_lib
 )
 
-include_directories(${GAZEBO_INCLUDE_DIRS})
-link_directories(${GAZEBO_LIBRARY_DIRS})
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GAZEBO_CXX_FLAGS}")
+#===============================================================================
+# I N C L U D E   F I L E S
 
-add_library(hello_world SHARED hello_world.cc)
-target_link_libraries(hello_world ${GAZEBO_LIBRAIRIES})
+include_directories(include
+	${catkin_INCLUDE_DIRS}
+	${GAZEBO_INCLUDE_DIRS}
+	)
+
+#===============================================================================
+# C R E A T E   E X E C U T A B L E
+
+link_directories(
+	${GAZEBO_LIBRARY_DIRS}
+	)
+
+add_library(hello_world SHARED src/hello_world.cc)
+
+target_link_libraries(hello_world ${GAZEBO_LIBRAIRIES} ${catkin_LIBRARIES})
+
+#===============================================================================
+# I N S T A L L   C O M P I L E D   F I L E S
+
+install(TARGETS
+	hello_world
+	DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+	LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+	)
