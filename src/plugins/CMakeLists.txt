@@ -45,9 +45,9 @@ link_directories(
 	${GAZEBO_LIBRARY_DIRS}
 	)
 
-add_library(hello_world SHARED src/hello_world.cc)
+add_library(hello_world_2 SHARED src/hello_world.cc)
 
-target_link_libraries(hello_world ${GAZEBO_LIBRAIRIES} ${catkin_LIBRARIES})
+target_link_libraries(hello_world_2 ${GAZEBO_LIBRAIRIES} ${catkin_LIBRARIES})
 
 #===============================================================================
 # I N S T A L L   C O M P I L E D   F I L E S
@@ -55,10 +55,10 @@ target_link_libraries(hello_world ${GAZEBO_LIBRAIRIES} ${catkin_LIBRARIES})
 set(
 	GAZEBO_PLUGIN_INSTALL_DIR
 	#${CMAKE_INSTALL_PREFIX}/${LIB_INSTALL_DIR}/gazebo-${GAZEBO_VERSION}/plugins
-	${CMAKE_INSTALL_PREFIX}/${LIB_INSTALL_DIR}/gazebo/plugins
+	${CMAKE_INSTALL_PREFIX}/${LIB_INSTALL_DIR}/gazebo/
 	)
 
 install(
-	TARGETS	hello_world
+	TARGETS	hello_world_2
 	LIBRARY DESTINATION ${GAZEBO_PLUGIN_INSTALL_DIR}
 	)
