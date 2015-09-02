@@ -46,8 +46,10 @@ link_directories(
 	)
 
 add_library(hello_world_2 SHARED src/hello_world.cc)
+add_library(thruster SHARED src/thruster.cc)
 
 target_link_libraries(hello_world_2 ${GAZEBO_LIBRAIRIES} ${catkin_LIBRARIES})
+target_link_libraries(thruster ${GAZEBO_LIBRAIRIES} ${catkin_LIBRARIES})
 
 #===============================================================================
 # I N S T A L L   C O M P I L E D   F I L E S
