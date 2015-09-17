@@ -21,7 +21,9 @@ find_package(catkin REQUIRED COMPONENTS
 #===============================================================================
 # OTHER PACKAGES
 
-find_package(gazebo REQUIRED)
+find_package(gazebo REQUIRED
+			Boost REQUIRED COMPONENTS system)
+
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GAZEBO_CXX_FLAGS}")
 
 catkin_package(
@@ -36,6 +38,7 @@ catkin_package(
 include_directories(include
 	${catkin_INCLUDE_DIRS}
 	${GAZEBO_INCLUDE_DIRS}
+	${Boost_INCLUDE_DIRS}
 	)
 
 #===============================================================================
@@ -43,13 +46,14 @@ include_directories(include
 
 link_directories(
 	${GAZEBO_LIBRARY_DIRS}
+	${Boost_LIBRARY_DIRS}
 	)
 
 add_library(hello_world_2 SHARED src/hello_world.cc)
 add_library(thruster SHARED src/thruster.cc)
 
-target_link_libraries(hello_world_2 ${GAZEBO_LIBRAIRIES} ${catkin_LIBRARIES})
-target_link_libraries(thruster ${GAZEBO_LIBRAIRIES} ${catkin_LIBRARIES})
+target_link_libraries(hello_world_2 ${GAZEBO_LIBRAIRIES} ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+target_link_libraries(thruster ${GAZEBO_LIBRAIRIES} ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 
 #===============================================================================
 # I N S T A L L   C O M P I L E D   F I L E S
