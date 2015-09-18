@@ -3,9 +3,9 @@
 # d = depth, h = heading
 # right and left = sub heading
 
-uint8 motor_front_d;
-uint8 motor_rear_d;
-uint8 motor_front_h;
-uint8 motor_rear_h;
-uint8 motor_prop_right;
-uint8 motor_prop_left;
+uint8 motor_front_d
+uint8 motor_rear_d
+uint8 motor_front_h
+uint8 motor_rear_h
+uint8 motor_prop_right
+uint8 motor_prop_left

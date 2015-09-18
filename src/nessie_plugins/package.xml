@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package>
-  <name>plugins</name>
+  <name>nessie_plugins</name>
   <version>1.0.0</version>
   <description>Package de communication avec Gazebo</description>
   <maintainer email="tomesman@gmail.com">tfuhrmann</maintainer>

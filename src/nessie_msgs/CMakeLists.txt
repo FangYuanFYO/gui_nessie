@@ -7,7 +7,7 @@
 # C M A K E   C O N F I G U R A T I O N
 
 cmake_minimum_required(VERSION 2.8.3)
-project(simsonia_msgs)
+project(nessie_msgs)
 
 #===============================================================================
 # C A T K I N   P A C K A G E S

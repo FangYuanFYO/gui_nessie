@@ -8,7 +8,7 @@
 
 cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 
-project(plugins)
+project(nessie_plugins)
 
 #===============================================================================
 # C A T K I N   P A C K A G E S
