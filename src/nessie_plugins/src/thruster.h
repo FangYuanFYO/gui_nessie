@@ -23,7 +23,8 @@ namespace gazebo
 		~ThrusterPlugin();
 
 	protected:
-		void ThrusterPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf);
+		void Load(physics::ModelPtr _model, sdf::ElementPtr _sdf);
+		void OnUpdate(const common::UpdateInfo &_info);
 
 	private:	
 		ros::NodeHandle node_handler_;

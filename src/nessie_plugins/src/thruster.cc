@@ -57,8 +57,8 @@ GZ_REGISTER_MODEL_PLUGIN(ThrusterPlugin)
 		// // node->Init(_model->GetName());
 		// node->Init("testNode");	
 		// transport::SubscriberPtr velocity_pub = node->Subscribe("velocity", cb);
-		this->upConnection = common::event::Event::ConnectWorldUpdateBegin(
-			boost::bind(&ThrusterPlugin::OnUpdate, this, _1));
+		// this->upConnection = common::event::Event::ConnectWorldUpdateBegin(
+		// 	boost::bind(&ThrusterPlugin::OnUpdate, this, _1));
 		//check gazebo / model_plugin
 	}
 
