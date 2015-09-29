@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<package>
+  <name>nessie_ros</name>
+  <version>1.0.0</version>
+  <description>Package des nodes ROS de Nessie</description>
+  <maintainer email="tomesman@gmail.com">tfuhrmann</maintainer>
+
+  <license>TODO</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>roscpp</build_depend>
+  <build_depend>rosconsole</build_depend>
+
+  <run_depend>roscpp</run_depend>
+  <run_depend>rosconsole</run_depend>
+  <!--
+  <run_depend>roscpp</run_depend>
+  <run_depend>rospy</run_depend>
+  <run_depend>std_msgs</run_depend>
+  -->
+
+
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+    <!-- You can specify that this package is a metapackage here: -->
+    <!-- <metapackage/> -->
+
+    <!-- Other tools can request additional information be placed here -->
+
+  </export>
+</package>

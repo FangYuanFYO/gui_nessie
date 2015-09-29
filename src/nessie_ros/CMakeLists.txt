@@ -1,6 +1,6 @@
 # \file	CMakeLists.txt
 # \author	Thomas Fuhrmann <tomesman@gmail.com>
-# \date	22/08/2015
+# \date	19/09/2015
 # \copyright	2015 SONIA AUV ETS <sonia@ens.etsmtl.ca>
 
 #===============================================================================
@@ -8,7 +8,7 @@
 
 cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 
-project(nessie_plugins)
+project(nessie_ros)
 
 #===============================================================================
 # C A T K I N   P A C K A G E S
@@ -48,22 +48,6 @@ link_directories(
 	${Boost_LIBRARY_DIRS}
 	)
 
-add_library(hello_world_2 SHARED src/hello_world.cc)
-add_library(thruster SHARED src/thruster.cc)
-
-target_link_libraries(hello_world_2 ${GAZEBO_LIBRAIRIES} ${catkin_LIBRARIES} ${Boost_LIBRARIES})
-target_link_libraries(thruster ${GAZEBO_LIBRAIRIES} ${catkin_LIBRARIES} ${Boost_LIBRARIES})
-
-#===============================================================================
-# I N S T A L L   C O M P I L E D   F I L E S
-
-set(
-	GAZEBO_PLUGIN_INSTALL_DIR
-	#${CMAKE_INSTALL_PREFIX}/${LIB_INSTALL_DIR}/gazebo-${GAZEBO_VERSION}/plugins
-	${CMAKE_INSTALL_PREFIX}/${LIB_INSTALL_DIR}/gazebo/
-	)
-
-install(
-	TARGETS	hello_world_2
-	LIBRARY DESTINATION ${GAZEBO_PLUGIN_INSTALL_DIR}
-	)
+add_executable(auv7_emulator src/auv7_emulator.cc)
+target_link_libraries(auv7_emulator ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES})
+add_dependencies(auv7_emulator auv7_motor_control_generate_messages_cpp)
