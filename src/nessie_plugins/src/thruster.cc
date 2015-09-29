@@ -12,6 +12,14 @@
 
 namespace gazebo
 {
+	int main(int argc, char **argv)
+	{
+	  ros::init(argc, argv, "nessie");
+
+	  ros::NodeHandle n;
+	  return 0;
+	}
+
 	ThrusterPlugin::ThrusterPlugin() : ModelPlugin(), node_handler_()
 	{
 		printf("ThrusterPlugin constructor.\n");
