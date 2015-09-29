@@ -35,7 +35,7 @@ namespace gazebo
 		physics::ModelPtr model_;
 
 	};
-
+	GZ_REGISTER_MODEL_PLUGIN(ThrusterPlugin)
 }
 
 /*************************************/

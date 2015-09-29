@@ -12,8 +12,6 @@
 
 namespace gazebo
 {
-GZ_REGISTER_MODEL_PLUGIN(ThrusterPlugin)
-
 	ThrusterPlugin::ThrusterPlugin() : ModelPlugin(), node_handler_()
 	{
 		printf("ThrusterPlugin constructor.\n");
