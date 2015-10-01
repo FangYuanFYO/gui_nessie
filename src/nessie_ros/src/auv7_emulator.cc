@@ -16,11 +16,11 @@ namespace nessie
 
 	//------------------------------------------------------------------------------
 	//
-	Auv7Emulator::Auv7Emulator() : node_handler_()
+	Auv7Emulator::Auv7Emulator(ros::NodeHandle node)// : node_handler_()
 	{
+		node_handler_ = node;
 		publisher_ = node_handler_.advertise<nessie_msgs::auv7_motor_control>(
-									NODE_NAME_PREFIX + "auv7_motor_control", 200);
-		Auv7Emulator::Auv7EmulatorPublish();
+									"auv7_motor_control", 200);
 	}
 
 	//------------------------------------------------------------------------------
@@ -48,8 +48,5 @@ namespace nessie
 		msg.motor_prop_left = 6;
 
 		publisher_.publish(msg);
-
-		ros::spinOnce();
- 		loop_rate.sleep();
 	}
 }

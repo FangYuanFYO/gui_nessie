@@ -14,6 +14,8 @@
 
 #include <string>
 
+#include <nessie_msgs/auv7_motor_control.h>
+
 namespace gazebo
 {
 	class ThrusterPlugin : public ModelPlugin
@@ -25,10 +27,11 @@ namespace gazebo
 	protected:
 		void Load(physics::ModelPtr _model, sdf::ElementPtr _sdf);
 		void OnUpdate(const common::UpdateInfo &_info);
+		void MotorControlCallback(const nessie_msgs::auv7_motor_control::ConstPtr& msg);
 
 	private:	
-		ros::NodeHandle node_handler_;
-		ros::Subscriber subsriber_;
+		ros::NodeHandle* node_handler_;
+		ros::Subscriber subscriber_;
 		event::ConnectionPtr update_connection_;
 		std::string topic_name_;
 		physics::WorldPtr world_;

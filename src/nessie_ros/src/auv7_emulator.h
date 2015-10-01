@@ -31,8 +31,9 @@ namespace nessie
 	public:
 	//============================================================================
   	// P U B L I C   C / D T O R S
-		Auv7Emulator();
+		Auv7Emulator(ros::NodeHandle node);
 		~Auv7Emulator();
+		void Auv7EmulatorPublish();
 
 	//============================================================================
   	// P U B L I C  M E T H O D S
@@ -40,7 +41,7 @@ namespace nessie
 	protected:
 	//============================================================================
   	// P R O T E C T E D   M E T H O D S
-		void Auv7EmulatorPublish();
+		
 
 	private:
 	//============================================================================

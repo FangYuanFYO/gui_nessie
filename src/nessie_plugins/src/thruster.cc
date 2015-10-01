@@ -20,15 +20,16 @@ namespace gazebo
 	  return 0;
 	}
 
-	ThrusterPlugin::ThrusterPlugin() : ModelPlugin(), node_handler_()
+	ThrusterPlugin::ThrusterPlugin() : ModelPlugin()
 	{
+		// node_handler_ = new ros::NodeHandle("auv7_emulator");
 		printf("ThrusterPlugin constructor.\n");
 	}
 
 	ThrusterPlugin::~ThrusterPlugin()
 	{
 		printf("ThrusterPlugin destructor.\n");
-		this->node_handler_.shutdown();
+		this->node_handler_->shutdown();
 	}
 
 	void ThrusterPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
@@ -66,6 +67,11 @@ namespace gazebo
 		// this->upConnection = common::event::Event::ConnectWorldUpdateBegin(
 		// 	boost::bind(&ThrusterPlugin::OnUpdate, this, _1));
 		//check gazebo / model_plugin
+
+		//SEE : gazebo_ros_api_plugin
+		//-> a master plugin has to be launched to launch ROS for gazebo !
+
+		// subscriber_ = node_handler_->subscribe("auv7_motor_control", 200, &ThrusterPlugin::MotorControlCallback, this);
 	}
 
 	void ThrusterPlugin::OnUpdate(const common::UpdateInfo &_info)
@@ -74,5 +80,10 @@ namespace gazebo
 		// position = _model->GetRelativePose();
 		// printf("Update position : %f, %f, %f\n", position.pos.x, position.pos.y, position.pos.z);
 		printf("ThrusterPlugin update !\n");
+	}
+
+	void ThrusterPlugin::MotorControlCallback(const nessie_msgs::auv7_motor_control::ConstPtr& msg)
+	{
+		ROS_INFO("MotorControlCallback !!\n");
 	}
 }

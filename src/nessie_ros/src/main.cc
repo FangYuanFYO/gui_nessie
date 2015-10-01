@@ -22,15 +22,14 @@ int main(int argc, char *argv[]) {
 
   ros::Rate loop_rate(1); //rate en Hz
 
-  ROS_INFO("Main : Auv7Emulator call.\n");
-  nessie::Auv7Emulator();
-  ROS_INFO("Main : after Auv7Emulator call.\n");
+  nessie::Auv7Emulator emul(n);
 
-  while (1)
+  while (ros::ok())
   {
       ROS_INFO("Main loop !\n");
+      emul.Auv7EmulatorPublish();
+      ros::spinOnce();
       loop_rate.sleep();
-      loop_rate.reset();
   }
 
   return EXIT_SUCCESS;
