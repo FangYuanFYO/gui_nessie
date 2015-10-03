@@ -20,13 +20,12 @@ namespace nessie
 {
 	//==============================================================================
 	// G L O B A L   V A R I A B L E S   A N D   S T R U C T
-
-	class NessieStartupPlugin : public SystemPlugin
+	class NessieStartupPlugin : public gazebo::SystemPlugin
 	{
 	public:
 	//============================================================================
   	// P U B L I C   C / D T O R S
-		NessieStartupPlugin(ros::NodeHandle node);
+		NessieStartupPlugin();
 		~NessieStartupPlugin();
 
 	//============================================================================
@@ -41,10 +40,14 @@ namespace nessie
 	private:
 	//============================================================================
   	// P R I V A T E   M E M B E R S
-		ros::NodeHandle node_handler_;
-		ros::Publisher	publisher_;
+		// detect if sigint event occurs
+  		bool stop_; 
+  		gazebo::event::ConnectionPtr sigint_event_;
+
+		ros::NodeHandle * node_handler_;
 
 	};
+	GZ_REGISTER_SYSTEM_PLUGIN(NessieStartupPlugin)
 }
 
 #endif

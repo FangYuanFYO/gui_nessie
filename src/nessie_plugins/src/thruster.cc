@@ -12,13 +12,13 @@
 
 namespace gazebo
 {
-	int main(int argc, char **argv)
-	{
-	  ros::init(argc, argv, "nessie");
+	// int main(int argc, char **argv)
+	// {
+	//   ros::init(argc, argv, "nessie");
 
-	  ros::NodeHandle n;
-	  return 0;
-	}
+	//   ros::NodeHandle n;
+	//   return 0;
+	// }
 
 	ThrusterPlugin::ThrusterPlugin() : ModelPlugin()
 	{
@@ -44,7 +44,7 @@ namespace gazebo
 		//check if ROS has been started
 		if(!ros::isInitialized())
 		{
-			printf("ThrusterPlugin load -> error, ROS not started...\n");
+			ROS_INFO("ThrusterPlugin load -> error, ROS not started...\n");
 			return;
 		}
 		
@@ -71,7 +71,7 @@ namespace gazebo
 		//SEE : gazebo_ros_api_plugin
 		//-> a master plugin has to be launched to launch ROS for gazebo !
 
-		// subscriber_ = node_handler_->subscribe("auv7_motor_control", 200, &ThrusterPlugin::MotorControlCallback, this);
+		subscriber_ = node_handler_->subscribe("auv7_motor_control", 200, &ThrusterPlugin::MotorControlCallback, this);
 	}
 
 	void ThrusterPlugin::OnUpdate(const common::UpdateInfo &_info)
