@@ -16,6 +16,7 @@ project(nessie_plugins)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   rosconsole
+  geometry_msgs
 )
 
 #===============================================================================
@@ -48,10 +49,10 @@ link_directories(
 	${Boost_LIBRARY_DIRS}
 	)
 
-add_library(hello_world_2 SHARED src/hello_world.cc)
+add_library(pose_publisher SHARED src/pose_publisher.cc)
 add_library(thruster SHARED src/thruster.cc)
 
-target_link_libraries(hello_world_2 ${GAZEBO_LIBRAIRIES} ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+target_link_libraries(pose_publisher ${GAZEBO_LIBRAIRIES} ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 target_link_libraries(thruster ${GAZEBO_LIBRAIRIES} ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 
 #===============================================================================
@@ -61,9 +62,4 @@ set(
 	GAZEBO_PLUGIN_INSTALL_DIR
 	#${CMAKE_INSTALL_PREFIX}/${LIB_INSTALL_DIR}/gazebo-${GAZEBO_VERSION}/plugins
 	${CMAKE_INSTALL_PREFIX}/${LIB_INSTALL_DIR}/gazebo/
-	)
-
-install(
-	TARGETS	hello_world_2
-	LIBRARY DESTINATION ${GAZEBO_PLUGIN_INSTALL_DIR}
 	)

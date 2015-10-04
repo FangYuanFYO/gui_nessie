@@ -49,3 +49,17 @@ namespace nessie
 		publisher_.publish(msg);
 	}
 }
+
+/*
+ * Subscriber pour la pose
+ * gazebo::math::Pose position;
+        position = _model->GetRelativePose();
+        printf("Position : %f, %f, %f\n", position.pos.x, position.pos.y, position.pos.z);
+        // common::Time::MSleep(5000);
+        // math::Vector3 accel_;
+        // accel_.x = 0;
+        // accel_.y = 0;
+        // accel_.z = 2;
+        // _model->SetLinearVel(accel_);
+        // printf("Velocity set ! \n");
+ */
