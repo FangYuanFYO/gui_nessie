@@ -11,10 +11,15 @@
 #define NESSIE_STARTUP_PLUGIN_H_
 
 #include <ros/ros.h>
+#include <ros/callback_queue.h>
 
 #include <gazebo/gazebo.hh>
 #include <gazebo/common/common.hh>
 #include <gazebo/transport/transport.hh>
+
+#include <boost/bind.hpp>
+
+#include <thread>
 
 namespace nessie
 {
@@ -31,6 +36,8 @@ namespace nessie
 	//============================================================================
   	// P U B L I C  M E T H O D S
 		void Load(int argc, char** argv);
+        void shutdownSignal();
+		void gazeboQueueThread();
 
 	protected:
 	//============================================================================
@@ -41,10 +48,16 @@ namespace nessie
 	//============================================================================
   	// P R I V A T E   M E M B E R S
 		// detect if sigint event occurs
-  		bool stop_; 
-  		gazebo::event::ConnectionPtr sigint_event_;
+  		bool stop_;
+        gazebo::event::ConnectionPtr sigint_event_;
 
-		ros::NodeHandle * node_handler_;
+        std::shared_ptr<ros::NodeHandle> node_handler_;
+
+        ros::CallbackQueue gazebo_queue_;
+        std::shared_ptr<std::thread> gazebo_callback_queue_thread_;
+        std::shared_ptr<ros::AsyncSpinner> async_ros_spin_;
+
+//        gazebo::transport::NodePtr gazebonode_;
 
 	};
 	GZ_REGISTER_SYSTEM_PLUGIN(NessieStartupPlugin)

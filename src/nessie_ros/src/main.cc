@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {
 
   while (ros::ok())
   {
-      ROS_INFO("Main loop !\n");
+//      ROS_INFO("Main loop !\n");
       emul.Auv7EmulatorPublish();
       ros::spinOnce();
       loop_rate.sleep();

@@ -19,8 +19,11 @@ namespace nessie
 	Auv7Emulator::Auv7Emulator(ros::NodeHandle node)// : node_handler_()
 	{
 		node_handler_ = node;
-		publisher_ = node_handler_.advertise<nessie_msgs::auv7_motor_control>(
-									"auv7_motor_control", 200);
+//		publisher_ = node_handler_.advertise<nessie_msgs::auv7_motor_control>(
+//									"nessie/auv7_motor_control", 200);
+
+        publisher_ = node_handler_.advertise<std_msgs::String>(
+                "nessie/auv7_motor_control", 200);
 	}
 
 	//------------------------------------------------------------------------------
@@ -37,15 +40,19 @@ namespace nessie
 	//
 	void Auv7Emulator::Auv7EmulatorPublish()
 	{
-		nessie_msgs::auv7_motor_control msg;
-		ros::Rate loop_rate(1000);
+//		nessie_msgs::auv7_motor_control msg;
+        std_msgs::String msg;
+//		ros::Rate loop_rate(1000);
+		ROS_INFO("Auv7EmulatorPublish");
 
-		msg.motor_front_d = 1;
-		msg.motor_rear_d = 2;
-		msg.motor_front_h = 3;
-		msg.motor_rear_h = 4;
-		msg.motor_prop_right = 5;
-		msg.motor_prop_left = 6;
+//		msg.motor_front_d = 1;
+//		msg.motor_rear_d = 2;
+//		msg.motor_front_h = 3;
+//		msg.motor_rear_h = 4;
+//		msg.motor_prop_right = 5;
+//		msg.motor_prop_left = 6;
+
+        msg.data = "connard !";
 
 		publisher_.publish(msg);
 	}

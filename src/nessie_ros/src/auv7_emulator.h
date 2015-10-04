@@ -12,6 +12,7 @@
 
 #include <ros/ros.h>
 #include <nessie_msgs/auv7_motor_control.h>
+#include <std_msgs/String.h>
 
 namespace nessie
 {
