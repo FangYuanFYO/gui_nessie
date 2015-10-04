@@ -21,6 +21,8 @@ namespace nessie
 		node_handler_ = node;
 		publisher_ = node_handler_.advertise<nessie_msgs::auv7_motor_control>(
 									"nessie/auv7_motor_control", 200);
+
+        subscriber_ = node_handler_.subscribe("nessie/auv7_pose", 200, &Auv7Emulator::PoseCallback, this);
 	}
 
 	//------------------------------------------------------------------------------
@@ -48,6 +50,13 @@ namespace nessie
 
 		publisher_.publish(msg);
 	}
+
+    //------------------------------------------------------------------------------
+    //
+    void Auv7Emulator::PoseCallback(const geometry_msgs::Pose::ConstPtr& msg)
+    {
+        ROS_INFO("Auv7Emulator::PoseCallback");
+    }
 }
 
 /*

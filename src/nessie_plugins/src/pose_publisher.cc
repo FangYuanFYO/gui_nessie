@@ -49,5 +49,18 @@ namespace nessie
         node_handler_ = new ros::NodeHandle("nessie");
 
         publisher_ = node_handler_->advertise<geometry_msgs::Pose>("auv7_pose", 1);
+
+        this->update_connection_ = gazebo::event::Events::ConnectWorldUpdateBegin(
+                boost::bind(&PosePublisherPlugin::Update, this));
+    }
+
+    //------------------------------------------------------------------------------
+    //
+    void PosePublisherPlugin::Update()
+    {
+        geometry_msgs::Pose msg;
+        msg.position.x = 3;
+
+        publisher_.publish(msg);
     }
 }

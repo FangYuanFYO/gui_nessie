@@ -43,12 +43,14 @@ namespace nessie
         //============================================================================
         // P R O T E C T E D   M E T H O D S
         void Load(gazebo::physics::ModelPtr _model, sdf::ElementPtr _sdf);
+        void Update();
 
     private:
         //============================================================================
         // P R I V A T E   M E M B E R S
         ros::NodeHandle* node_handler_;
         ros::Publisher publisher_;
+        gazebo::event::ConnectionPtr update_connection_;
     };
     GZ_REGISTER_MODEL_PLUGIN(PosePublisherPlugin)
 }
