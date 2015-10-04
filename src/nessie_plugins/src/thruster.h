@@ -1,53 +1,57 @@
-#pragma once
+/**
+ * \file	thruster.h
+ * \author	Thomas Fuhrmann <tomesman@gmail.com>
+ * \date	19/09/2015
+ * \copyright Copyright (c) 2015 SONIA AUV ETS <sonia@ens.etsmtl.ca>.
+ * All rights reserved.
+ * Use of this source code is governed by the MIT license that can be
+ * found in the LICENSE file.
+ */
+
+#ifndef NESSIE_PLUGINS_THRUSTER_H_
+#define NESSIE_PLUGINS_THRUSTER_H_
+
+#include <thread>
 
 #include <gazebo/gazebo.hh>
 #include <gazebo/math/Pose.hh>
 #include <gazebo/math/Vector3.hh>
 #include <gazebo/physics/physics.hh>
 #include <gazebo/common/common.hh>
-#include <gazebo/transport/transport.hh>
-#include <gazebo/msgs/msgs.hh>
-
-#include <boost/bind.hpp>
 
 #include <ros/ros.h>
 #include <ros/callback_queue.h>
 
-#include <string>
-#include <thread>
+#include <boost/bind.hpp>
 
 #include <nessie_msgs/auv7_motor_control.h>
 
-#include <std_msgs/String.h>
-
-namespace gazebo
+namespace nessie
 {
-	class ThrusterPlugin : public ModelPlugin
+    //==============================================================================
+    // G L O B A L   V A R I A B L E S   A N D   S T R U C T
+
+
+	class ThrusterPlugin : public gazebo::ModelPlugin
 	{
 	public:
+    //============================================================================
+    // P U B L I C   C / D T O R S
 		ThrusterPlugin();
 		~ThrusterPlugin();
 
 	protected:
-		void Load(physics::ModelPtr _model, sdf::ElementPtr _sdf);
-		void OnUpdate(const common::UpdateInfo &_info);
+    //============================================================================
+    // P R O T E C T E D   M E T H O D S
+		void Load(gazebo::physics::ModelPtr _model, sdf::ElementPtr _sdf);
 		void MotorControlCallback(const nessie_msgs::auv7_motor_control::ConstPtr& msg);
-//		void MotorControlCallback(const std_msgs::String::ConstPtr& msg);
         void gazeboQueueThread();
 
 	private:
+    //============================================================================
+    // P R I V A T E   M E M B E R S
 		ros::NodeHandle* node_handler_;
 		ros::Subscriber subscriber_;
-		event::ConnectionPtr update_connection_;
-		std::string topic_name_;
-		physics::WorldPtr world_;
-		physics::ModelPtr model_;
-
-        gazebo::transport::NodePtr gazebonode_;
-//        gazebo::transport::SubscriberPtr subscriber_;
-
-		event::ConnectionPtr updateConnection;
-
 		ros::CallbackQueue gazebo_queue_;
         std::shared_ptr<std::thread> gazebo_callback_queue_thread_;
 
@@ -55,9 +59,4 @@ namespace gazebo
 	GZ_REGISTER_MODEL_PLUGIN(ThrusterPlugin)
 }
 
-/*************************************/
-/******* Links to keep in minde *******
-
--> gazebo_ros_joint_state_publisher (robotNamespace)
-
-**************************************/
+#endif //NESSIE_PLUGINS_THRUSTER_H_

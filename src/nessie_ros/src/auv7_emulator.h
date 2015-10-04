@@ -2,7 +2,8 @@
  * \file	auv7_emulator.h
  * \author	Thomas Fuhrmann <tomesman@gmail.com>
  * \date	19/09/2015
- * \copyright Copyright (c) 2015 Thibaut Mattio. All rights reserved.
+ * \copyright Copyright (c) 2015 SONIA AUV ETS <sonia@ens.etsmtl.ca>.
+ * All rights reserved.
  * Use of this source code is governed by the MIT license that can be
  * found in the LICENSE file.
  */
@@ -12,16 +13,12 @@
 
 #include <ros/ros.h>
 #include <nessie_msgs/auv7_motor_control.h>
-#include <std_msgs/String.h>
 
 namespace nessie
 {
 	//==============================================================================
 	// G L O B A L   V A R I A B L E S   A N D   S T R U C T
-	/**
-	 * Global variable which stores the prefixe of the nodes names.
-	 */
-	const std::string NODE_NAME_PREFIX = "/nessie/";
+
 	/**
 	 * @brief Emulate the behavior of AUV7.
 	 * @details [long description]
@@ -52,4 +49,4 @@ namespace nessie
 	};
 }
 
-#endif
+#endif //NESSIE_ROS_AUV7_EMULATOR_H_
