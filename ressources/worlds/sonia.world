@@ -2,7 +2,7 @@
 <?xml version="1.0" ?>
 <sdf version="1.4">
   <world name="piscine">
-    <plugin name="libhello_world" filename="libhello_world_2.so" />
+<!--    <plugin name="libhello_world" filename="libhello_world_2.so" /> -->
 <!-- A global light source -->
     <include>
       <uri>model://sun</uri>
