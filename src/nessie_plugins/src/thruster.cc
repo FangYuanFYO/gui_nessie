@@ -81,15 +81,15 @@ namespace gazebo
 //        gazebonode_->Init("nessie");
 //        subscriber_ = gazebonode_->Subscribe("auv7_motor_control", &ThrusterPlugin::MotorControlCallback);
 
-		this->updateConnection = event::Events::ConnectWorldUpdateBegin (
-				boost::bind ( &ThrusterPlugin::OnUpdate, this, _1 ) );
+//		this->updateConnection = event::Events::ConnectWorldUpdateBegin (
+//				boost::bind ( &ThrusterPlugin::OnUpdate, this, _1 ) );
 
 
 
         gazebo_callback_queue_thread_.reset(new std::thread(&ThrusterPlugin::gazeboQueueThread, this) );
 
         ros::SubscribeOptions link_state_so =
-                ros::SubscribeOptions::create<std_msgs::String>(
+                ros::SubscribeOptions::create<nessie_msgs::auv7_motor_control>(
                         "auv7_motor_control",10,
                         boost::bind( &ThrusterPlugin::MotorControlCallback,this,_1),
                         ros::VoidPtr(), &gazebo_queue_);
@@ -106,10 +106,10 @@ namespace gazebo
 //		printf("ThrusterPlugin update !\n");
 	}
 
-//	void ThrusterPlugin::MotorControlCallback(const nessie_msgs::auv7_motor_control::ConstPtr& msg)
-	void ThrusterPlugin::MotorControlCallback(const std_msgs::String::ConstPtr& msg)
+	void ThrusterPlugin::MotorControlCallback(const nessie_msgs::auv7_motor_control::ConstPtr& msg)
+//	void ThrusterPlugin::MotorControlCallback(const std_msgs::String::ConstPtr& msg)
 	{
-		ROS_INFO("MotorControlCallback !!\n");
+		ROS_INFO("MotorControlCallback : %d!!", msg->motor_front_d);
 	}
 
 	//------------------------------------------------------------------------------

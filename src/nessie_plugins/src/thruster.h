@@ -31,8 +31,8 @@ namespace gazebo
 	protected:
 		void Load(physics::ModelPtr _model, sdf::ElementPtr _sdf);
 		void OnUpdate(const common::UpdateInfo &_info);
-//		void MotorControlCallback(const nessie_msgs::auv7_motor_control::ConstPtr& msg);
-		void MotorControlCallback(const std_msgs::String::ConstPtr& msg);
+		void MotorControlCallback(const nessie_msgs::auv7_motor_control::ConstPtr& msg);
+//		void MotorControlCallback(const std_msgs::String::ConstPtr& msg);
         void gazeboQueueThread();
 
 	private:
