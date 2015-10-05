@@ -44,18 +44,9 @@ namespace nessie
             char** argv = NULL;
             ros::init(argc,argv,"thruster",ros::init_options::NoSigintHandler);
 		}
-		
-        gazebo::math::Pose position;
-		position = _model->GetRelativePose();
-		printf("Position : %f, %f, %f\n", position.pos.x, position.pos.y, position.pos.z);
-		// common::Time::MSleep(5000);
-		// math::Vector3 accel_;
-		// accel_.x = 0;
-		// accel_.y = 0;
-		// accel_.z = 2;
-		// _model->SetLinearVel(accel_);
-		// printf("Velocity set ! \n");
 
+		model_ = _model;
+		
         node_handler_ = new ros::NodeHandle("nessie");
 
         gazebo_callback_queue_thread_.reset(new std::thread(&ThrusterPlugin::gazeboQueueThread, this) );
@@ -72,7 +63,19 @@ namespace nessie
     //
 	void ThrusterPlugin::MotorControlCallback(const nessie_msgs::auv7_motor_control::ConstPtr& msg)
 	{
-		ROS_INFO("MotorControlCallback : %d!!", msg->motor_front_d);
+		//msg->motor_front_d
+		gazebo::math::Vector3 accel_;
+		if(msg->motor_front_d == 1)
+		{
+			accel_.x = -2;
+		}
+		else if(msg->motor_front_d == 2)
+		{
+			accel_.x = 2;
+		}	
+		accel_.y = 0;
+		accel_.z = 0;
+		model_->SetLinearVel(accel_);
 	}
 
 	//------------------------------------------------------------------------------

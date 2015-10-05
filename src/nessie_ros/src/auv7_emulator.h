@@ -50,6 +50,7 @@ namespace nessie
 		ros::NodeHandle node_handler_;
 		ros::Publisher	publisher_;
         ros::Subscriber subscriber_;
+        bool sens;
 	};
 }
 

@@ -1,7 +1,7 @@
 /**
- * \file	pose_publisher.cc
- * \author	Thomas Fuhrmann <tomesman@gmail.com>
- * \date	04/10/2015
+ * \file    pose_publisher.cc
+ * \author  Thomas Fuhrmann <tomesman@gmail.com>
+ * \date    04/10/2015
  * \copyright Copyright (c) 2015 SONIA AUV ETS <sonia@ens.etsmtl.ca>.
  * All rights reserved.
  * Use of this source code is governed by the MIT license that can be
@@ -19,7 +19,7 @@ namespace nessie
     //
     PosePublisherPlugin::PosePublisherPlugin() : ModelPlugin()
     {
-
+        count_ = 0;
     }
 
     //------------------------------------------------------------------------------
@@ -46,6 +46,8 @@ namespace nessie
             ros::init(argc,argv,"pose_publisher",ros::init_options::NoSigintHandler);
         }
 
+        model_ = _model;
+
         node_handler_ = new ros::NodeHandle("nessie");
 
         publisher_ = node_handler_->advertise<geometry_msgs::Pose>("auv7_pose", 1);
@@ -59,8 +61,21 @@ namespace nessie
     void PosePublisherPlugin::Update()
     {
         geometry_msgs::Pose msg;
-        msg.position.x = 3;
+        gazebo::math::Pose pose;
+        count_++;
 
-        publisher_.publish(msg);
+        if(count_ > 100)
+        {
+            pose = model_->GetRelativePose();
+            msg.position.x = pose.pos.x;
+            msg.position.y = pose.pos.y;
+            msg.position.z = pose.pos.z;
+            msg.orientation.x = pose.rot.x;
+            msg.orientation.y = pose.rot.y;
+            msg.orientation.z = pose.rot.z;
+            msg.orientation.w = pose.rot.w;
+            count_= 0;
+            publisher_.publish(msg);
+        }
     }
 }

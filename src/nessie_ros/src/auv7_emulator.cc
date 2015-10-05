@@ -19,6 +19,8 @@ namespace nessie
 	Auv7Emulator::Auv7Emulator(ros::NodeHandle node)
 	{
 		node_handler_ = node;
+		sens = false;
+
 		publisher_ = node_handler_.advertise<nessie_msgs::auv7_motor_control>(
 									"nessie/auv7_motor_control", 200);
 
@@ -40,13 +42,15 @@ namespace nessie
 	void Auv7Emulator::Auv7EmulatorPublish()
 	{
 		nessie_msgs::auv7_motor_control msg;
-
-		msg.motor_front_d = 1;
-		msg.motor_rear_d = 2;
-		msg.motor_front_h = 3;
-		msg.motor_rear_h = 4;
-		msg.motor_prop_right = 5;
-		msg.motor_prop_left = 6;
+		if(sens)
+		{
+			msg.motor_front_d = 1;
+		}
+		else
+		{
+			msg.motor_front_d = 2;	
+		}
+		ROS_INFO("Auv7EmulatorPublish, id = %d", msg.motor_front_d);
 
 		publisher_.publish(msg);
 	}
@@ -55,7 +59,15 @@ namespace nessie
     //
     void Auv7Emulator::PoseCallback(const geometry_msgs::Pose::ConstPtr& msg)
     {
-        ROS_INFO("Auv7Emulator::PoseCallback");
+    	ROS_INFO("PoseCallback, position = %lf", msg->position.x);
+        if(msg->position.x > 2)
+        {
+        	sens = true;
+        }
+        else if(msg->position.x < -2)
+        {
+        	sens = false;	
+        }
     }
 }
 

@@ -54,6 +54,7 @@ namespace nessie
 		ros::Subscriber subscriber_;
 		ros::CallbackQueue gazebo_queue_;
         std::shared_ptr<std::thread> gazebo_callback_queue_thread_;
+        gazebo::physics::ModelPtr model_;
 
 	};
 	GZ_REGISTER_MODEL_PLUGIN(ThrusterPlugin)
