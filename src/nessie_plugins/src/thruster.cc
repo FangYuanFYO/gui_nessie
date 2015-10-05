@@ -74,7 +74,14 @@ namespace nessie
 			accel_.x = 2;
 		}	
 		accel_.y = 0;
-		accel_.z = 0;
+		if(msg->motor_front_h == 1)
+		{
+			accel_.z = -0.5;
+		}
+		else if(msg->motor_front_h == 2)
+		{
+			accel_.z = 0.5;
+		}
 		model_->SetLinearVel(accel_);
 	}
 
