@@ -10,7 +10,7 @@ As Nessie works with Gazebo, you have first to install it. First, check if you h
 gazebo -v
 ```
 
-If it says that Gazebo doesn't exist, or if your version is less than 5, [http://www.gazebosim.org/tutorials?tut=install_ubuntu&cat=install please install the Gazebo 6 software].
+If it says that Gazebo doesn't exist, or if your version is less than 5, [please install the Gazebo 6 software] (http://www.gazebosim.org/tutorials?tut=install_ubuntu&cat=install).
 And keep in mind the version of Gazebo you have.
 
 ##Compile Nessie
