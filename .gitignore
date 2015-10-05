@@ -1,0 +1,31 @@
+# Generic files to ignore
+*~
+*.lock
+*.DS_Store
+*.swp
+*.out
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Ignore file using ROS' git best practices
+*.kdev4*
+*.kdev4
+*kate*
+.idea/
+.cproject
+.project
+.pydevproject
+cmake_install.cmake
+devel/
+build/
+bin/
+lib/
+msg_gen/
+srv_gen/
+.metadata
+install
+.o
+.mk
+src/build*/
+*~

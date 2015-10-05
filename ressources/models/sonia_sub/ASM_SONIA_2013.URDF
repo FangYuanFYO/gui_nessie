@@ -1,0 +1,31 @@
+<?xml version="1.0">
+<sdf version="1.4">
+<model name="sonia_sub">
+  <plugin name="libthruster" filename="libthruster.so" />
+  <plugin name="libpose_publisher" filename="libpose_publisher.so"/>
+  <static>0</static>
+  <pose>0 0 0.5 0 0 0</pose> <!-- position du frame du modèle par rapport au frame du world -->
+  <link name="sub">
+    <inertial>
+      <pose>0 0 0 0 0 0</pose> <!-- position du frame utilisé pour le lien par rapport à la position du frame du modèle -->
+      <mass>43.69</mass>
+      <inertia>
+        <ixx>1.4528</ixx>
+        <ixy>0.20083</ixy>
+        <ixz>0.29446</ixz>
+        <iyy>4.583</iyy>
+        <iyz>-0.019119</iyz>
+        <izz>4.4189</izz>
+      </inertia>
+    </inertial>
+    <visual name="visual">
+      <pose>0 0 0 0 0 0</pose> <!-- position du frame utilisé pour le visuel par rapport à la position du frame du modèle -->
+      <geometry>
+        <mesh>
+         <uri>model://sonia_sub/meshes/base_link.STL</uri>
+	     </mesh>
+      </geometry>
+    </visual>
+  </link>
+</model>
+</sdf>
