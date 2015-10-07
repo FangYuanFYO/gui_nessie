@@ -41,3 +41,12 @@ When it's your first compilation, you may have an error of missing .h files. You
 source path_to_gui_nessie/devel/setup.bash
 catkin_make
 ```
+
+##Launch Nessie
+
+When Nessie is compiled, you have to launch it. First launch ROS (roscore), then Gazebo and finaly the ROS node which control the submarine (in different terminals) :
+
+```
+gazebo worlds/sonia.world
+rosrun nessie_ros auv7_emulator
+```
