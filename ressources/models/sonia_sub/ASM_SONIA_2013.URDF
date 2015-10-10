@@ -26,6 +26,13 @@
 	    </mesh>
       </geometry>
     </visual>
+    <collision name="collision">
+        <geometry>
+          <mesh>
+            <uri>model://sonia_sub/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+    </collision>
   </link>
   <!-- add links for the motors, just a position -->
   <link name="motor_front_heading">
