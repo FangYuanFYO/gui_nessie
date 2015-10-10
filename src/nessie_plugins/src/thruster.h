@@ -46,6 +46,7 @@ namespace nessie
 		void Load(gazebo::physics::ModelPtr _model, sdf::ElementPtr _sdf);
 		void MotorControlCallback(const nessie_msgs::auv7_motor_control::ConstPtr& msg);
         void gazeboQueueThread();
+        void applyThursterForce(uint thruster_id, int thruster_force);
 
 	private:
     //============================================================================
