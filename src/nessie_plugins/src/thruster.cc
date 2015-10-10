@@ -86,10 +86,18 @@ namespace nessie
 
 
 		gazebo::math::Vector3 pos_;
-		link_ = model_->GetLink("motor_1");
+		link_ = model_->GetLink("motor_front_depth");
 		if(link_)
 		{
-			accel_.z = 10;
+			accel_.z = 50;
+			// pos_.x = 0.5;
+			// link_->AddForceAtRelativePosition(accel_, pos_);
+			link_->AddForce(accel_);
+		}
+		link_ = model_->GetLink("motor_back_depth");
+		if(link_)
+		{
+			accel_.z = 50;
 			// pos_.x = 0.5;
 			// link_->AddForceAtRelativePosition(accel_, pos_);
 			link_->AddForce(accel_);

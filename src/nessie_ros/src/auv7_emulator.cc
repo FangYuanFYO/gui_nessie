@@ -45,19 +45,19 @@ namespace nessie
 		nessie_msgs::auv7_motor_control msg;
 		if(sens_x)
 		{
-			msg.motor_front_d = 1;
+			msg.motor_front_depth = 1;
 		}
 		else
 		{
-			msg.motor_front_d = 2;	
+			msg.motor_front_depth = 2;	
 		}
         if(sens_z)
         {
-            msg.motor_front_h = 1;
+            msg.motor_front_heading = 1;
         }
         else
         {
-            msg.motor_front_h = 2;
+            msg.motor_front_heading = 2;
         }
 		publisher_.publish(msg);
 	}
