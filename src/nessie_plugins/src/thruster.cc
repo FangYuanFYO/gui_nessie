@@ -65,24 +65,35 @@ namespace nessie
 	{
 		//msg->motor_front_d
 		gazebo::math::Vector3 accel_;
-		if(msg->motor_front_d == 1)
+		// if(msg->motor_front_d == 1)
+		// {
+		// 	accel_.x = -2;
+		// }
+		// else if(msg->motor_front_d == 2)
+		// {
+		// 	accel_.x = 2;
+		// }	
+		// accel_.y = 0;
+		// if(msg->motor_front_h == 1)
+		// {
+		// 	accel_.z = -0.5;
+		// }
+		// else if(msg->motor_front_h == 2)
+		// {
+		// 	accel_.z = 0.5;
+		// }
+		// model_->SetLinearVel(accel_);
+
+
+		gazebo::math::Vector3 pos_;
+		link_ = model_->GetLink("motor_1");
+		if(link_)
 		{
-			accel_.x = -2;
+			accel_.z = 10;
+			// pos_.x = 0.5;
+			// link_->AddForceAtRelativePosition(accel_, pos_);
+			link_->AddForce(accel_);
 		}
-		else if(msg->motor_front_d == 2)
-		{
-			accel_.x = 2;
-		}	
-		accel_.y = 0;
-		if(msg->motor_front_h == 1)
-		{
-			accel_.z = -0.5;
-		}
-		else if(msg->motor_front_h == 2)
-		{
-			accel_.z = 0.5;
-		}
-		model_->SetLinearVel(accel_);
 	}
 
 	//------------------------------------------------------------------------------

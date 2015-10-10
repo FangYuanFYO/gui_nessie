@@ -27,5 +27,14 @@
       </geometry>
     </visual>
   </link>
+  <!-- add links for the motors, just a position -->
+  <link name="motor_1">
+    <pose>-0.5 0 0 0 0 0</pose>
+  </link>
+  <!-- add joints for the motors, just a position -->
+  <joint name="j_motor_1" type="fixed">
+    <parent>sub</parent>
+    <child>motor_1</child>
+  </joint>
 </model>
 </sdf>

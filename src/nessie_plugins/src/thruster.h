@@ -56,6 +56,8 @@ namespace nessie
         std::shared_ptr<std::thread> gazebo_callback_queue_thread_;
         gazebo::physics::ModelPtr model_;
 
+        gazebo::physics::LinkPtr link_;
+
 	};
 	GZ_REGISTER_MODEL_PLUGIN(ThrusterPlugin)
 }
