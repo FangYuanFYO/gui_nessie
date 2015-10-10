@@ -66,19 +66,19 @@ namespace nessie
     //
     void Auv7Emulator::PoseCallback(const geometry_msgs::Pose::ConstPtr& msg)
     {
-        if(msg->position.x > 2)
+        if(msg->position.x > 1)
         {
         	sens_x = true;
         }
-        else if(msg->position.x < -2)
+        else if(msg->position.x < -1)
         {
         	sens_x = false;
         }
-		if(msg->position.z > 2)
+		if(msg->position.z > 2.5)
 		{
 			sens_z = true;
 		}
-		else if(msg->position.z < 1.3)
+		else if(msg->position.z < 2)
 		{
 			sens_z = false;
 		}

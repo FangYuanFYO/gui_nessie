@@ -65,43 +65,42 @@ namespace nessie
 	{
 		//msg->motor_front_d
 		gazebo::math::Vector3 accel_;
-		// if(msg->motor_front_d == 1)
-		// {
-		// 	accel_.x = -2;
-		// }
-		// else if(msg->motor_front_d == 2)
-		// {
-		// 	accel_.x = 2;
-		// }	
-		// accel_.y = 0;
-		// if(msg->motor_front_h == 1)
-		// {
-		// 	accel_.z = -0.5;
-		// }
-		// else if(msg->motor_front_h == 2)
-		// {
-		// 	accel_.z = 0.5;
-		// }
-		// model_->SetLinearVel(accel_);
+		if(msg->motor_front_depth == 1)
+		{
+			applyThursterForce(1, -4000);
+		}
+		else if(msg->motor_front_depth == 2)
+		{
+			applyThursterForce(1, 4000);
+		}	
+		accel_.y = 0;
+		if(msg->motor_front_heading == 1)
+		{
+			applyThursterForce(2, -1000);
+		}
+		else if(msg->motor_front_heading == 2)
+		{
+			applyThursterForce(2, 1000);
+		}
 
 
-		gazebo::math::Vector3 pos_;
-		link_ = model_->GetLink("motor_front_depth");
-		if(link_)
-		{
-			accel_.z = 50;
-			// pos_.x = 0.5;
-			// link_->AddForceAtRelativePosition(accel_, pos_);
-			link_->AddForce(accel_);
-		}
-		link_ = model_->GetLink("motor_back_depth");
-		if(link_)
-		{
-			accel_.z = 50;
-			// pos_.x = 0.5;
-			// link_->AddForceAtRelativePosition(accel_, pos_);
-			link_->AddForce(accel_);
-		}
+		// gazebo::math::Vector3 pos_;
+		// link_ = model_->GetLink("motor_front_depth");
+		// if(link_)
+		// {
+		// 	accel_.z = 50;
+		// 	// pos_.x = 0.5;
+		// 	// link_->AddForceAtRelativePosition(accel_, pos_);
+		// 	link_->AddForce(accel_);
+		// }
+		// link_ = model_->GetLink("motor_back_depth");
+		// if(link_)
+		// {
+		// 	accel_.z = 50;
+		// 	// pos_.x = 0.5;
+		// 	// link_->AddForceAtRelativePosition(accel_, pos_);
+		// 	link_->AddForce(accel_);
+		// }
 	}
 
 	//------------------------------------------------------------------------------
@@ -113,5 +112,29 @@ namespace nessie
 		{
 			gazebo_queue_.callAvailable(ros::WallDuration(timeout));
 		}
+    }
+
+    //------------------------------------------------------------------------------
+	//
+    void ThrusterPlugin::applyThursterForce(uint thruster_id, int thruster_force)
+    {
+    	gazebo::physics::LinkPtr link_to_apply_;
+    	gazebo::math::Vector3 force_to_apply_;
+    	if(thruster_id == 1) //move forward
+    	{
+    		force_to_apply_.x = thruster_force;
+    		link_to_apply_ = model_->GetLink("motor_port");
+    		link_to_apply_->AddForce(force_to_apply_);
+    		link_to_apply_ = model_->GetLink("motor_starboard");
+    		link_to_apply_->AddForce(force_to_apply_);
+    	}
+    	else //move depth
+    	{
+    		force_to_apply_.z = thruster_force;
+    		link_to_apply_ = model_->GetLink("motor_front_depth");
+    		link_to_apply_->AddForce(force_to_apply_);
+    		link_to_apply_ = model_->GetLink("motor_back_depth");
+    		link_to_apply_->AddForce(force_to_apply_);
+    	}
     }
 }
