@@ -19,11 +19,11 @@
       </inertia>
     </inertial>
     <visual name="visual">
-      <pose>0 0 0 0 0 0</pose> <!-- position du frame utilisé pour le visuel par rapport à la position du frame du modèle -->
+      <pose>0 0 0 0 0 3.14</pose> <!-- position du frame utilisé pour le visuel par rapport à la position du frame du modèle -->
       <geometry>
         <mesh>
          <uri>model://sonia_sub/meshes/base_link.STL</uri>
-	     </mesh>
+	    </mesh>
       </geometry>
     </visual>
   </link>
