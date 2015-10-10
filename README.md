@@ -10,26 +10,24 @@ As Nessie works with Gazebo, you have first to install it. First, check if you h
 gazebo -v
 ```
 
-If it says that Gazebo doesn't exist, or if your version is less than 5, [please install the Gazebo 6 software] (http://www.gazebosim.org/tutorials?tut=install_ubuntu&cat=install).
-And keep in mind the version of Gazebo you have.
+If it says that Gazebo doesn't exist, or if your version is less than 6, [please install the Gazebo 6 software] (http://www.gazebosim.org/tutorials?tut=install_ubuntu&cat=install).
 
 ##Compile Nessie
 
 Once Gazebo is installed, you have to do a little more things before compiling Nessie. 
 In fact, you have to source the Nessie's bashrc. The simplest way is to add it to your main bashrc file.
 
-- X is your version of Gazebo (5 or 6)
 - path_to_gui_nessie is the path of the GUI_NESSIE folder.
 
 ```
-echo "source path_to_gui_nessie/ressources/setup_gzX.sh" >> ~/.bashrc
+echo "source path_to_gui_nessie/ressources/setup_gz.sh" >> ~/.bashrc
 echo "source path_to_gui_nessie/devel/setup.bash" >> ~/.bashrc
 ```
 
-For example, if you use Gazebo 6 and if GUI_NESSIE is a included in you SONIA workspace :
+For example, if GUI_NESSIE is a included in you SONIA workspace :
 
 ```
-echo "source $SONIA_WORKSPACE_ROOT/gui_nessie/ressources/setup_gz6.sh" >> ~/.bashrc
+echo "source $SONIA_WORKSPACE_ROOT/gui_nessie/ressources/setup_gz.sh" >> ~/.bashrc
 echo "source $SONIA_WORKSPACE_ROOT/gui_nessie/devel/setup.bash" >> ~/.bashrc
 ```
 
