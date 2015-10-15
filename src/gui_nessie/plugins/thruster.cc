@@ -52,7 +52,7 @@ namespace nessie
         gazebo_callback_queue_thread_.reset(new std::thread(&ThrusterPlugin::gazeboQueueThread, this) );
 
         ros::SubscribeOptions link_state_so =
-                ros::SubscribeOptions::create<nessie_msgs::auv7_motor_control>(
+                ros::SubscribeOptions::create<gui_nessie::auv7_motor_control>(
                         "auv7_motor_control",10,
                         boost::bind( &ThrusterPlugin::MotorControlCallback,this,_1),
                         ros::VoidPtr(), &gazebo_queue_);
@@ -61,7 +61,7 @@ namespace nessie
 
     //------------------------------------------------------------------------------
     //
-	void ThrusterPlugin::MotorControlCallback(const nessie_msgs::auv7_motor_control::ConstPtr& msg)
+	void ThrusterPlugin::MotorControlCallback(const gui_nessie::auv7_motor_control::ConstPtr& msg)
 	{
 		//msg->motor_front_d
 		gazebo::math::Vector3 accel_;
