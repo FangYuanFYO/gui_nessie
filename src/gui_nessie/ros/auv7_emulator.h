@@ -14,7 +14,7 @@
 #include <ros/ros.h>
 #include <geometry_msgs/Pose.h>
 
-#include <nessie_msgs/auv7_motor_control.h>
+#include <gui_nessie/auv7_motor_control.h>
 
 namespace nessie
 {

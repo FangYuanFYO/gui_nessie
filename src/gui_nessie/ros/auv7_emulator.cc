@@ -22,7 +22,7 @@ namespace nessie
 		sens_x = false;
         sens_z = false;
 
-		publisher_ = node_handler_.advertise<nessie_msgs::auv7_motor_control>(
+		publisher_ = node_handler_.advertise<gui_nessie::auv7_motor_control>(
 									"nessie/auv7_motor_control", 200);
 
         subscriber_ = node_handler_.subscribe("nessie/auv7_pose", 200, &Auv7Emulator::PoseCallback, this);
@@ -42,7 +42,7 @@ namespace nessie
 	//
 	void Auv7Emulator::Auv7EmulatorPublish()
 	{
-		nessie_msgs::auv7_motor_control msg;
+		gui_nessie::auv7_motor_control msg;
 		if(sens_x)
 		{
 			msg.motor_front_depth = 1;

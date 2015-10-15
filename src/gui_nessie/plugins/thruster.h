@@ -24,7 +24,7 @@
 
 #include <boost/bind.hpp>
 
-#include <nessie_msgs/auv7_motor_control.h>
+#include <gui_nessie/auv7_motor_control.h>
 
 namespace nessie
 {
@@ -44,7 +44,7 @@ namespace nessie
     //============================================================================
     // P R O T E C T E D   M E T H O D S
 		void Load(gazebo::physics::ModelPtr _model, sdf::ElementPtr _sdf);
-		void MotorControlCallback(const nessie_msgs::auv7_motor_control::ConstPtr& msg);
+		void MotorControlCallback(const gui_nessie::auv7_motor_control::ConstPtr& msg);
         void gazeboQueueThread();
         void applyThursterForce(uint thruster_id, int thruster_force);
 

@@ -8,7 +8,7 @@
 //==============================================================================
 // I N C L U D E   F I L E S
 #include "ros/ros.h"
-#include "auv7_emulator.h"
+#include "gui_nessie/ros/auv7_emulator.h"
 
 /**
  * Main function of the vision_client package
