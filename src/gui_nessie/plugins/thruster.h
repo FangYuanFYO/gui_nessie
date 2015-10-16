@@ -26,41 +26,49 @@
 
 #include <gui_nessie/auv7_motor_control.h>
 
-namespace nessie
-{
-    //==============================================================================
-    // G L O B A L   V A R I A B L E S   A N D   S T R U C T
+namespace nessie {
 
+class ThrusterPlugin : public gazebo::ModelPlugin {
+ public:
+  //============================================================================
+  // P U B L I C   C / D T O R S
 
-	class ThrusterPlugin : public gazebo::ModelPlugin
-	{
-	public:
-    //============================================================================
-    // P U B L I C   C / D T O R S
-		ThrusterPlugin();
-		~ThrusterPlugin();
+  ThrusterPlugin();
 
-	protected:
-    //============================================================================
-    // P R O T E C T E D   M E T H O D S
-		void Load(gazebo::physics::ModelPtr _model, sdf::ElementPtr _sdf);
-		void MotorControlCallback(const gui_nessie::auv7_motor_control::ConstPtr& msg);
-        void gazeboQueueThread();
-        void applyThursterForce(uint thruster_id, int thruster_force);
+  ~ThrusterPlugin();
 
-	private:
-    //============================================================================
-    // P R I V A T E   M E M B E R S
-		ros::NodeHandle* node_handler_;
-		ros::Subscriber subscriber_;
-		ros::CallbackQueue gazebo_queue_;
-        std::shared_ptr<std::thread> gazebo_callback_queue_thread_;
-        gazebo::physics::ModelPtr model_;
+ protected:
+  //============================================================================
+  // P R O T E C T E D   M E T H O D S
 
-        gazebo::physics::LinkPtr link_;
+  void Load(gazebo::physics::ModelPtr _model, sdf::ElementPtr _sdf);
 
-	};
-	GZ_REGISTER_MODEL_PLUGIN(ThrusterPlugin)
-}
+  void MotorControlCallback(
+      const gui_nessie::auv7_motor_control::ConstPtr& msg);
 
-#endif //NESSIE_PLUGINS_THRUSTER_H_
+  void gazeboQueueThread();
+
+  void applyThursterForce(uint thruster_id, int thruster_force);
+
+ private:
+  //============================================================================
+  // P R I V A T E   M E M B E R S
+
+  ros::NodeHandle* node_handler_;
+
+  ros::Subscriber subscriber_;
+
+  ros::CallbackQueue gazebo_queue_;
+
+  std::shared_ptr<std::thread> gazebo_callback_queue_thread_;
+
+  gazebo::physics::ModelPtr model_;
+
+  gazebo::physics::LinkPtr link_;
+};
+
+GZ_REGISTER_MODEL_PLUGIN(ThrusterPlugin)
+
+}  // namespace
+
+#endif  // NESSIE_PLUGINS_THRUSTER_H_

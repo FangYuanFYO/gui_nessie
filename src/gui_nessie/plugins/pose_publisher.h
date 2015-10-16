@@ -26,36 +26,42 @@
 
 #include <boost/bind.hpp>
 
-namespace nessie
-{
-    //==============================================================================
-    // G L O B A L   V A R I A B L E S   A N D   S T R U C T
+namespace nessie {
 
+class PosePublisherPlugin : public gazebo::ModelPlugin {
+ public:
+  //============================================================================
+  // P U B L I C   C / D T O R S
 
-    class PosePublisherPlugin : public gazebo::ModelPlugin
-    {
-    public:
-        //============================================================================
-        // P U B L I C   C / D T O R S
-        PosePublisherPlugin();
-        ~PosePublisherPlugin();
+  PosePublisherPlugin();
 
-    protected:
-        //============================================================================
-        // P R O T E C T E D   M E T H O D S
-        void Load(gazebo::physics::ModelPtr _model, sdf::ElementPtr _sdf);
-        void Update();
+  ~PosePublisherPlugin();
 
-    private:
-        //============================================================================
-        // P R I V A T E   M E M B E R S
-        ros::NodeHandle* node_handler_;
-        ros::Publisher publisher_;
-        gazebo::event::ConnectionPtr update_connection_;
-        gazebo::physics::ModelPtr model_;
-        uint32_t count_;
-    };
-    GZ_REGISTER_MODEL_PLUGIN(PosePublisherPlugin)
-}
+ protected:
+  //============================================================================
+  // P R O T E C T E D   M E T H O D S
 
-#endif //PROJECT_POSE_PUBLISHER_H
+  void Load(gazebo::physics::ModelPtr _model, sdf::ElementPtr _sdf);
+
+  void Update();
+
+ private:
+  //============================================================================
+  // P R I V A T E   M E M B E R S
+
+  ros::NodeHandle* node_handler_;
+
+  ros::Publisher publisher_;
+
+  gazebo::event::ConnectionPtr update_connection_;
+
+  gazebo::physics::ModelPtr model_;
+
+  uint32_t count_;
+};
+
+GZ_REGISTER_MODEL_PLUGIN(PosePublisherPlugin)
+
+}  // namespace nessie
+
+#endif  // PROJECT_POSE_PUBLISHER_H

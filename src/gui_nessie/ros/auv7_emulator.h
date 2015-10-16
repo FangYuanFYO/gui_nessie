@@ -16,43 +16,44 @@
 
 #include <gui_nessie/auv7_motor_control.h>
 
-namespace nessie
-{
-	//==============================================================================
-	// G L O B A L   V A R I A B L E S   A N D   S T R U C T
+namespace nessie {
 
-	/**
-	 * @brief Emulate the behavior of AUV7.
-	 * @details [long description]
-	 * @return [description]
-	 */
-	class Auv7Emulator
-	{
-	public:
-	//============================================================================
-  	// P U B L I C   C / D T O R S
-		Auv7Emulator(ros::NodeHandle node);
-		~Auv7Emulator();
-		void Auv7EmulatorPublish();
-        void PoseCallback(const geometry_msgs::Pose::ConstPtr& msg);
+/**
+ * @brief Emulate the behavior of AUV7.
+ * @details [long description]
+ * @return [description]
+ */
+class Auv7Emulator {
+ public:
+  //============================================================================
+  // P U B L I C   C / D T O R S
 
-	//============================================================================
-  	// P U B L I C  M E T H O D S
+  explicit Auv7Emulator(ros::NodeHandle node);
 
-	protected:
-	//============================================================================
-  	// P R O T E C T E D   M E T H O D S
-		
+  ~Auv7Emulator();
 
-	private:
-	//============================================================================
-  	// P R I V A T E   M E M B E R S
-		ros::NodeHandle node_handler_;
-		ros::Publisher	publisher_;
-        ros::Subscriber subscriber_;
-        bool sens_x;
-		bool sens_z;
-	};
-}
+  //============================================================================
+  // P U B L I C  M E T H O D S
 
-#endif //NESSIE_ROS_AUV7_EMULATOR_H_
+  void Auv7EmulatorPublish();
+
+  void PoseCallback(const geometry_msgs::Pose::ConstPtr& msg);
+
+ private:
+  //============================================================================
+  // P R I V A T E   M E M B E R S
+
+  ros::NodeHandle node_handler_;
+
+  ros::Publisher publisher_;
+
+  ros::Subscriber subscriber_;
+
+  bool sens_x;
+
+  bool sens_z;
+};
+
+}  // namespace nessie
+
+#endif  // NESSIE_ROS_AUV7_EMULATOR_H_
