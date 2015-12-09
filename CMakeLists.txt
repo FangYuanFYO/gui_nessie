@@ -103,6 +103,7 @@ set_target_properties( ${TARGET_NAME}
 set( TARGET_NAME thruster )
 #add_library( ${TARGET_NAME} SHARED ${gui_nessie_FILES} )
 add_library( ${TARGET_NAME} src/gui_nessie/plugins/${TARGET_NAME}.cc )
+add_dependencies(${TARGET_NAME} ${PROJECT_NAME}_gencpp)
 target_link_libraries( ${TARGET_NAME}
    ${catkin_LIBRARIES}
    ${GAZEBO_LIBRAIRIES}
@@ -117,7 +118,7 @@ set_target_properties( ${TARGET_NAME}
 set( TARGET_NAME auv7_emulator )
 #add_executable( ${TARGET_NAME} ${gui_nessie_FILES} )
 add_executable( ${TARGET_NAME} src/gui_nessie/ros/${TARGET_NAME}.cc src/gui_nessie/main.cc)
-
+add_dependencies(${TARGET_NAME} ${PROJECT_NAME}_gencpp)
 set_target_properties( ${TARGET_NAME}
    PROPERTIES
    LINKER_LANGUAGE CXX
